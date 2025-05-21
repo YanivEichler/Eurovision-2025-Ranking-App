@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eurovision 2025 Ranking</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+
+  <!-- Sortable.js Library -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+  <style>
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+	.separator {
+	  pointer-events: none;
+	  user-select: none;
+	}
+  </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-black dark:text-white font-sans">
+  <div class="max-w-md mx-auto p-4">
+
+    <!-- Header Buttons -->
+    <div class="flex justify-between mb-2">
+      <button id="resetBtn"
+        class="text-sm px-3 py-1 rounded bg-red-400 text-white hover:bg-red-500 dark:bg-red-600 dark:hover:bg-red-700">
+        🔄 Reset Rankings
+      </button>
+      <button id="darkToggle"
+        class="text-sm px-3 py-1 rounded bg-gray-300 text-black dark:bg-gray-700 dark:text-white">
+        🌙 Dark Mode
+      </button>
+    </div>
+
+    <h1 class="text-2xl font-bold text-center mb-4">🎤 Eurovision 2025 Ranking</h1>
+	
+    <!--Tabs Navigation -->
+    <div class="flex justify-around mb-4">
+      <button class="tab-btn px-4 py-2 rounded-full bg-blue-500 text-white dark:bg-blue-700 dark:text-white"
+        data-tab="semi1">Semi 1</button>
+      <button class="tab-btn px-4 py-2 rounded-full bg-gray-300 text-gray-700 dark:bg-gray-600 dark:text-gray-300"
+        data-tab="semi2">Semi 2</button>
+      <button class="tab-btn px-4 py-2 rounded-full bg-gray-300 text-gray-700 dark:bg-gray-600 dark:text-gray-300"
+        data-tab="final">Final</button>
+    </div>
+	
+
+    <!-- Semi Final 1 -->
+    <div id="semi1" class="tab-content active">
+      <ul id="list-semi1" class="space-y-2">
+        <li data-id="is" data-lyrics-file="lyrics/is.html" 
+		  class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/is.png" class="w-6">
+            <span>Iceland – Væb – <em>Róa</em></span>
+          </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="pl" data-lyrics-file="lyrics/pl.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/pl.png" class="w-6">
+            <span>Poland – Justyna Steczkowska – <em>Gaja</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="si" data-lyrics-file="lyrics/si.html"
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/si.png" class="w-6">
+            <span>Slovenia – Klemen – <em>How Much Time Do We Have Left</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="ee" data-lyrics-file="lyrics/ee.html"
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/ee.png" class="w-6">
+            <span>Estonia – Tommy Cash – <em>Espresso Macchiato</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="ua" data-lyrics-file="lyrics/ua.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/ua.png" class="w-6">
+            <span>Ukraine – Ziferblat – <em>Bird of Pray</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="se" data-lyrics-file="lyrics/se.html"
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/se.png" class="w-6">
+            <span>Sweden – KAJ – <em>Bara bada bastu</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="pt" data-lyrics-file="lyrics/pt.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/pt.png" class="w-6">
+            <span>Portugal – Napa – <em>Deslocado</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="no" data-lyrics-file="lyrics/no.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/no.png" class="w-6">
+            <span>Norway – Kyle Alessandro – <em>Lighter</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="be" data-lyrics-file="lyrics/be.html"
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/be.png" class="w-6">
+            <span>Belgium – Red Sebastian – <em>Strobe Lights</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="az" data-lyrics-file="lyrics/az.html"
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/az.png" class="w-6">
+            <span>Azerbaijan – Mamagama – <em>Run with U</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+		<li class="separator bg-gray-300 text-center font-bold text-sm p-1 text-gray-700 dark:bg-gray-600 dark:text-gray-100" data-fixed>── Qualifier Cutoff ──</li>
+        <li data-id="sm" data-lyrics-file="lyrics/sm.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/sm.png" class="w-6">
+            <span>San Marino – Gabry Ponte – <em>Tutta l’Italia</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="al" data-lyrics-file="lyrics/al.html"
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/al.png" class="w-6">
+            <span>Albania – Shkodra Elektronike – <em>Zjerm</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="nl" data-lyrics-file="lyrics/nl.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/nl.png" class="w-6">
+            <span>Netherlands – Claude – <em>C’est la vie</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="hr" data-lyrics-file="lyrics/hr.html"
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/hr.png" class="w-6">
+            <span>Croatia – Marko Bošnjak – <em>Poison Cake</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="cy" data-lyrics-file="lyrics/cy.html"
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/cy.png" class="w-6">
+            <span>Cyprus – Theo Evan – <em>Shh</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Semi Final 2 -->
+    <div id="semi2" class="tab-content">
+      <ul id="list-semi2" class="space-y-2">
+        <li data-id="au" data-lyrics-file="lyrics/au.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/au.png" class="w-6">
+            <span>Australia – Go-Jo – <em>Milkshake Man</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="me" data-lyrics-file="lyrics/me.html"
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/me.png" class="w-6">
+            <span>Montenegro – Nina Žižić – <em>Dobrodošli</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="ie" data-lyrics-file="lyrics/ie.html"
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/ie.png" class="w-6">
+            <span>Ireland – Emmy – <em>Laika Party</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="lv" data-lyrics-file="lyrics/lv.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/lv.png" class="w-6">
+            <span>Latvia – Tautumeitas – <em>Bur man laimi</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="am" data-lyrics-file="lyrics/am.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/am.png" class="w-6">
+            <span>Armenia – Parg – <em>Survivor</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="at" data-lyrics-file="lyrics/at.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/at.png" class="w-6">
+            <span>Austria – JJ – <em>Wasted Love</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="gr" data-lyrics-file="lyrics/gr.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/gr.png" class="w-6">
+            <span>Greece – Klavdia – <em>Asteromata</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="lt" data-lyrics-file="lyrics/lt.html"
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/lt.png" class="w-6">
+            <span>Lithuania – Katarsis – <em>Tavo akys</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="mt" data-lyrics-file="lyrics/mt.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/mt.png" class="w-6">
+            <span>Malta – Miriana Conte – <em>Serving</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="ge" data-lyrics-file="lyrics/ge.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/ge.png" class="w-6">
+            <span>Georgia – Mariam Shengelia – <em>Freedom</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+		<li class="separator bg-gray-300 text-center font-bold text-sm p-1 text-gray-700 dark:bg-gray-600 dark:text-gray-100" data-fixed>── Qualifier Cutoff ──</li>
+        <li data-id="dk" data-lyrics-file="lyrics/dk.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/dk.png" class="w-6">
+            <span>Denmark – Sissal – <em>Hallucination</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="cz" data-lyrics-file="lyrics/cz.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/cz.png" class="w-6">
+            <span>Czechia – Adonxs – <em>Kiss Kiss Goodbye</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="lu" data-lyrics-file="lyrics/lu.html"
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/lu.png" class="w-6">
+            <span>Luxembourg – Laura Thorn – <em>La poupée monte le son</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="il" data-lyrics-file="lyrics/il.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/il.png" class="w-6">
+            <span>Israel – Yuval Raphael – <em>New Day Will Rise</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="rs" data-lyrics-file="lyrics/rs.html"
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/rs.png" class="w-6">
+            <span>Serbia – Princ – <em>Mila</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+        <li data-id="fi" data-lyrics-file="lyrics/fi.html" 
+          class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+          <div class="flex-1 min-w-0 flex items-center gap-2">
+            <img src="https://flagcdn.com/w40/fi.png" class="w-6">
+            <span>Finland – Erika Vikman – <em>Ich komme</em></span>
+          </div>
+          <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Final -->
+	<div id="final" class="tab-content">
+	  <ul id="list-final" class="space-y-2">
+		<li data-id="fno" data-lyrics-file="lyrics/no.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/no.png" class="w-6">
+			<span>Norway – Kyle Alessandro – <em>Lighter</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="flu" data-lyrics-file="lyrics/lu.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/lu.png" class="w-6">
+			<span>Luxembourg – Laura Thorn – <em>La Poupée Monte Le Son</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fee" data-lyrics-file="lyrics/ee.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/ee.png" class="w-6">
+			<span>Estonia – Tommy Cash – <em>Espresso Macchiato</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fil" data-lyrics-file="lyrics/il.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/il.png" class="w-6">
+			<span>Israel – Yuval Raphael – <em>New Day Will Rise</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="flt" data-lyrics-file="lyrics/lt.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/lt.png" class="w-6">
+			<span>Lithuania – Katarsis – <em>Tavo Akys</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fes" data-lyrics-file="lyrics/es.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/es.png" class="w-6">
+			<span>Spain – Melody – <em>ESA DIVA</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fua" data-lyrics-file="lyrics/ua.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/ua.png" class="w-6">
+			<span>Ukraine – Ziferblat – <em>Bird of Pray</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fgb" data-lyrics-file="lyrics/gb.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/gb.png" class="w-6">
+			<span>United Kingdom – Remember Monday – <em>What The Hell Just Happened?</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fat" data-lyrics-file="lyrics/at.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/at.png" class="w-6">
+			<span>Austria – JJ – <em>Wasted Love</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fis" data-lyrics-file="lyrics/is.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/is.png" class="w-6">
+			<span>Iceland – VÆB – <em>RÓA</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="flv" data-lyrics-file="lyrics/lv.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/lv.png" class="w-6">
+			<span>Latvia – Tautumeitas – <em>Bur Man Laimi</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fnl" data-lyrics-file="lyrics/nl.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/nl.png" class="w-6">
+			<span>Netherlands – Claude – <em>C’est La Vie</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="ffi" data-lyrics-file="lyrics/fi.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/fi.png" class="w-6">
+			<span>Finland – Erika Vikman – <em>ICH KOMME</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fit" data-lyrics-file="lyrics/it.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/it.png" class="w-6">
+			<span>Italy – Lucio Corsi – <em>Volevo Essere Un Duro</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fpl" data-lyrics-file="lyrics/pl.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/pl.png" class="w-6">
+			<span>Poland – Justyna Steczkowska – <em>GAJA</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fde" data-lyrics-file="lyrics/de.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/de.png" class="w-6">
+			<span>Germany – Abor &amp; Tynna – <em>Baller</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fgr" data-lyrics-file="lyrics/gr.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/gr.png" class="w-6">
+			<span>Greece – Klavdia – <em>Asteromáta</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fam" data-lyrics-file="lyrics/am.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/am.png" class="w-6">
+			<span>Armenia – PARG – <em>SURVIVOR</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fch" data-lyrics-file="lyrics/ch.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/ch.png" class="w-6">
+			<span>Switzerland – Zoë Më – <em>Voyage</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fmt" data-lyrics-file="lyrics/mt.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/mt.png" class="w-6">
+			<span>Malta – Miriana Conte – <em>SERVING</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fpt" data-lyrics-file="lyrics/pt.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/pt.png" class="w-6">
+			<span>Portugal – NAPA – <em>Deslocado</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fdk" data-lyrics-file="lyrics/dk.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/dk.png" class="w-6">
+			<span>Denmark – Sissal – <em>Hallucination</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fse" data-lyrics-file="lyrics/se.html" data-lyrics-file="lyrics/se.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/se.png" class="w-6">
+			<span>Sweden – KAJ – <em>Bara Bada Bastu</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="ffr" data-lyrics-file="lyrics/fr.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/fr.png" class="w-6">
+			<span>France – Louane – <em>maman</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fsm" data-lyrics-file="lyrics/sm.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/sm.png" class="w-6">
+			<span>San Marino – Gabry Ponte – <em>Tutta L’Italia</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+		<li data-id="fal" data-lyrics-file="lyrics/al.html" data-lyrics-file="lyrics/al.html" class="flex items-center justify-between bg-white dark:bg-gray-800 text-black dark:text-white rounded p-2 shadow mb-2 group">
+		  <div class="flex-1 min-w-0 flex items-center gap-2">
+			<img src="https://flagcdn.com/w40/al.png" class="w-6">
+			<span>Albania – Shkodra Elektronike – <em>Zjerm</em></span>
+		  </div>
+		  <div class="mt-2 sm:mt-0 flex items-center gap-2">
+			<button class="lyrics-btn text-sm px-2 py-1 bg-blue-600 text-white rounded">Lyrics</button>
+			<span class="drag-handle cursor-grab text-xl px-2 select-none">☰</span>
+		  </div>
+		</li>
+	  </ul>
+	</div>
+	</div>
+    <!-- 1) Modal container: add p-4 for mobile padding, ensure flex is applied -->
+	<div
+	  id="lyrics-modal"
+	  class="fixed inset-0 hidden flex items-center justify-center bg-black bg-opacity-50 z-50 p-4"
+	>
+	  <!-- 2) Inner box: full-width up to max-w, with safe horizontal margins -->
+	  <div
+		class="bg-white dark:bg-gray-800 w-full max-w-lg rounded-2xl p-6 max-h-[80vh] overflow-y-auto relative"
+	  >
+		<!-- Close button -->
+		<button
+		  id="close-lyrics"
+		  class="absolute top-3 right-3 text-2xl leading-none text-black dark:text-white"
+		>&times;</button>
+		<!-- Content area -->
+		<div id="modal-content" class="prose dark:prose-invert"></div>
+	  </div>
+	</div>
+
+
+    <script>
+		const fileKey = location.pathname.split('/').pop().replace('.html', '');
+		const storage = createScopedStorage(fileKey);
+
+		function createScopedStorage(prefix) {
+		  return {
+			set(key, value) {
+			  localStorage.setItem(`${prefix}:${key}`, JSON.stringify(value));
+			},
+			get(key) {
+			  const item = localStorage.getItem(`${prefix}:${key}`);
+			  return item ? JSON.parse(item) : null;
+			},
+			remove(key) {
+			  localStorage.removeItem(`${prefix}:${key}`);
+			},
+			clear() {
+			  Object.keys(localStorage)
+				.filter(k => k.startsWith(`${prefix}:`))
+				.forEach(k => localStorage.removeItem(k));
+			}
+		  };
+		}
+
+	  function saveList(id) {
+	    const ul = document.getElementById(id);
+	    const order = [...ul.children]
+		  .filter(li => !li.classList.contains('separator'))
+ 	      .map(li => li.dataset.id);
+	    storage.set(id, JSON.stringify(order));
+	  }
+
+	  function loadList(id) {
+		  const ul = document.getElementById(id);
+		  const saved = storage.get(id);
+		  if (!saved) return;
+
+		  const order = JSON.parse(saved);
+
+		  // create a map of data-id to the list item
+		  const items = Array.from(ul.children);
+		  const itemMap = {};
+		  let separator = null;
+
+		  items.forEach(li => {
+			if (li.classList.contains('separator')) {
+			  separator = li;
+			} else {
+			  itemMap[li.dataset.id] = li;
+			}
+		  });
+
+		  // remove all children (but not with innerHTML = '')
+		  items.forEach(li => ul.removeChild(li));
+
+		  // add in saved order
+		  order.forEach(id => {
+			if (itemMap[id]) {
+			  ul.appendChild(itemMap[id]);
+			  delete itemMap[id];
+			}
+		  });
+
+		  // add any items not saved yet
+		  Object.values(itemMap).forEach(li => ul.appendChild(li));
+
+		  // insert separator at position 10
+		  if (separator) ul.insertBefore(separator, ul.children[10] || null);
+		}
+
+
+	  ['semi1', 'semi2', 'final'].forEach(tab => {
+		const listId = `list-${tab}`;
+		loadList(listId);
+
+		new Sortable(document.getElementById(listId), {
+		  animation: 150,
+		  handle: '.drag-handle',
+		  filter: '.separator',
+		  preventOnFilter: false,
+		  onEnd: () => {
+			const ul = document.getElementById(listId);
+			const separator = ul.querySelector('.separator');
+			const items = [...ul.children].filter(li => !li.classList.contains('separator'));
+			const before = items.slice(0, 10);
+			const after = items.slice(10);
+			ul.innerHTML = '';
+			before.forEach(li => ul.appendChild(li));
+			if (separator) ul.appendChild(separator);
+			after.forEach(li => ul.appendChild(li));
+			saveList(listId);
+		  }
+		});
+	  });
+
+	  // Tabs
+	  const tabButtons = document.querySelectorAll('.tab-btn');
+	  const tabContents = document.querySelectorAll('.tab-content');
+	  tabButtons.forEach(button => {
+		button.addEventListener('click', () => {
+		  const target = button.dataset.tab;
+		  tabButtons.forEach(btn => {
+			btn.classList.remove('bg-blue-500', 'text-white', 'dark:bg-blue-700', 'dark:text-white');
+			btn.classList.add('bg-gray-300', 'text-gray-700', 'dark:bg-gray-600', 'dark:text-gray-300');
+		  });
+		  button.classList.add('bg-blue-500', 'text-white', 'dark:bg-blue-700', 'dark:text-white');
+		  button.classList.remove('bg-gray-300', 'text-gray-700', 'dark:bg-gray-600', 'dark:text-gray-300');
+		  tabContents.forEach(content => content.classList.remove('active'));
+		  document.getElementById(target).classList.add('active');
+		});
+	  });
+
+	  // Swipe support
+	  let touchStartX = 0;
+	  document.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; });
+	  document.addEventListener('touchend', e => {
+		const touchEndX = e.changedTouches[0].screenX;
+		const dx = touchEndX - touchStartX;
+		if (Math.abs(dx) > 50) {
+		  const tabs = Array.from(tabButtons);
+		  const activeIndex = tabs.findIndex(btn => btn.classList.contains('bg-blue-500'));
+		  const nextIndex = dx < 0 ? Math.min(tabs.length - 1, activeIndex + 1) : Math.max(0, activeIndex - 1);
+		  tabs[nextIndex].click();
+		}
+	  });
+
+	  // Dark mode toggle
+	  const toggleBtn = document.getElementById('darkToggle');
+	  const htmlEl = document.documentElement;
+	  if (storage.get('darkMode') === true) {
+		htmlEl.classList.add('dark');
+	  }
+	  toggleBtn.addEventListener('click', () => {
+		const enabled = htmlEl.classList.toggle('dark');
+		storage.set('darkMode', enabled);
+	  });
+
+	  // Reset button logic
+	  document.getElementById('resetBtn').addEventListener('click', () => {
+		if (confirm("Are you sure you want to reset all rankings?")) {
+		  const darkMode = storage.get('darkMode');
+		  storage.clear();
+		  if (darkMode === true) {
+			storage.set('darkMode', true);
+		  }
+		  location.reload();
+		}
+	  });
+	  
+	  // open modal and load the file
+	  async function openLyrics(file) {
+		const res = await fetch(file);
+		const html = await res.text();
+		document.getElementById('modal-content').innerHTML = html;
+		document.getElementById('lyrics-modal').classList.remove('hidden');
+	  }
+
+	  // close handler
+	  document.getElementById('close-lyrics')
+		.addEventListener('click', () => {
+		  document.getElementById('lyrics-modal').classList.add('hidden');
+		});
+
+	  // attach click on the Lyrics button
+	  document.querySelectorAll('.lyrics-btn').forEach(btn => {
+		btn.addEventListener('click', e => {
+		  e.stopPropagation();                // don’t start a drag
+		  const file = btn.closest('li').dataset.lyricsFile;
+		  openLyrics(file);
+		});
+	  });
+	</script>
+</body>
+
+</html>
